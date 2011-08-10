@@ -1,0 +1,8 @@
+This is an attempt to make an 8 bit rendition of persona 4. Right now the overworld engine is being developed
+Features:
+Talking with people.
+Automatic dungeon creation.
+Turn based battle system that combines radiant historia features and final fantasy tactics placement dependancies
+8 bit hotness
+
+Uses https://github.com/louisstow/Crafty
