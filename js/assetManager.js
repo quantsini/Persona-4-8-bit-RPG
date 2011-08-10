@@ -8,12 +8,12 @@ Crafty.c("AssetLoadManager", {
     _load: function () {
 		var a, t, doIconAnimation, showLoadingIcon, hideLoadingIcon, showing;
 		
-					Crafty.sprite(116, "igorsprite.png", {igorSprite: [0,0,0,0]});
+					Crafty.sprite(116, "assets/igorsprite.png", {igorSprite: [0,0,0,0]});
 					var igor = Crafty.e("2D, Canvas, igorSprite, SpriteAnimation");
 					igor.attr({x:10, y:300})
 					.animate("laugh", 0, 0,1).animate("laugh",13,-1);
 					
-        Crafty.sprite(75, "loading.png", {
+        Crafty.sprite(75, "assets/loading.png", {
             loadingIcon: [0, 0]
         });
         a = Crafty.e("2D, Canvas, Tween, loadingIcon").attr({

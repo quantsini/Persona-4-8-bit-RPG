@@ -1,9 +1,9 @@
 Crafty.c("NovelInterface", {
     init: function() {
-		Crafty.sprite(1, "orangebackground.png", {
+		Crafty.sprite(1, "assets/orangebackground.png", {
 			orangebg: [0, 0, 640, 100]
 		});
-		Crafty.sprite(1, "darkbackground.png", {
+		Crafty.sprite(1, "assets/darkbackground.png", {
 			darkbg: [0, 0, 640, 100]
 		});
 		

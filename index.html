@@ -11,20 +11,20 @@
 				font-size: 11px;
 			}
 		</style>
-		<script src="jquery-1.6.2.js"></script>
-		<script src="StackBoxBlur.js"></script>
-		<script src="crafty.js"></script>
-		<script src="aggroable.js"></script>
-		<script src="interactable.js"></script>
-		<script src="playerControl.js"></script>
-		<script src="movable.js"></script>
-		<script src="canvasConvolver.js"></script>
-		<script src="player.js"></script>
-		<script src="npc.js"></script>
-		<script src="character.js"></script>
-		<script src="respectZIndex.js"></script>
-		<script src="assetManager.js"></script>
-		<script src="novelInterface.js"></script>
+		<script src="js/jquery-1.6.2.js"></script>
+		<script src="js/StackBoxBlur.js"></script>
+		<script src="js/crafty.js"></script>
+		<script src="js/aggroable.js"></script>
+		<script src="js/interactable.js"></script>
+		<script src="js/playerControl.js"></script>
+		<script src="js/movable.js"></script>
+		<script src="js/canvasConvolver.js"></script>
+		<script src="js/player.js"></script>
+		<script src="js/npc.js"></script>
+		<script src="js/character.js"></script>
+		<script src="js/respectZIndex.js"></script>
+		<script src="js/assetManager.js"></script>
+		<script src="js/novelInterface.js"></script>
 		<script type="text/javascript">
 			$( function() {
 				Crafty.init(640,440);
@@ -49,28 +49,28 @@
 					});
 
 					// load the loading screen assets
-					Crafty.load(["loading.png", "igorsprite.png"], function() {
-						loadManager.loadScene(["personalogo.png","pushenter.png"], "titleScreen");
+					Crafty.load(["assets/loading.png", "assets/igorsprite.png"], function() {
+						loadManager.loadScene(["assets/personalogo.png","assets/pushenter.png"], "titleScreen");
 					}, function(e) {
 						console.log(e.percent);
 					}, function(e) {
 						console.log(e);
-						loadManager.loadScene(["personalogo.png","pushenter.png"], "titleScreen");
+						loadManager.loadScene(["assets/personalogo.png","assets/pushenter.png"], "titleScreen");
 					});
 				});
 				// this is the title screen scene.
 				Crafty.scene("titleScreen", function() {
 					loadManager = Crafty.e("AssetLoadManager");
 					// add music
-					Crafty.audio.add("introMusic", ["intro.mp3","intro.ogg"]);
+					Crafty.audio.add("introMusic", ["assets/intro.mp3","assets/intro.ogg"]);
 					Crafty.audio.play("introMusic", -1);
 					Crafty.background("black");
 
 					//creates the sprites
-					Crafty.sprite(200,"personalogo.png", {
+					Crafty.sprite(200,"assets/personalogo.png", {
 						personalogo: [0,0]
 					});
-					Crafty.sprite(200,"pushenter.png", {
+					Crafty.sprite(200,"assets/pushenter.png", {
 						pressenter: [0,0]
 					});
 					logo = Crafty.e("2D, Canvas, personalogo, Tween");
@@ -93,7 +93,7 @@
 							if (e.key === 13) {
 								Crafty.audio.mute();
 								Crafty.audio.mute();
-								loadManager.loadScene(["yosukehappy.png", "yosukesad.png","chieask.png", "chieangry.png", "tree.png","palmTree.png","rock.png","bush.png","smalltree.png","background.png","tileset32.png","darkbackground.png","orangebackground.png", "chiesprite.png","igor.png","kanji.png","kanjiangry.png","kanjiconfused.png","soujisprite.png","teddie.png","teddiehappy.png","teddiesad.png","yosukesprite.png","yukkiko.png","yukkikosad.png","yukkikosprite.png","chie.png","yosuke.png","chiehungry.png"], "overworld");
+								loadManager.loadScene(["assets/yosukehappy.png", "assets/yosukesad.png","assets/chieask.png", "assets/chieangry.png", "assets/tree.png","assets/palmTree.png","assets/rock.png","assets/bush.png","assets/smalltree.png","assets/background.png","assets/tileset32.png","assets/darkbackground.png","assets/orangebackground.png", "assets/chiesprite.png","assets/igor.png","assets/kanji.png","assets/kanjiangry.png","assets/kanjiconfused.png","assets/soujisprite.png","assets/teddie.png","assets/teddiehappy.png","assets/teddiesad.png","assets/yosukesprite.png","assets/yukkiko.png","assets/yukkikosad.png","assets/yukkikosprite.png","assets/chie.png","assets/yosuke.png","assets/chiehungry.png"], "overworld");
 							}
 						});
 						pushEnter.z = 1;
@@ -122,11 +122,11 @@
 					var vnEngine = Crafty.e("NovelInterface");
 					Crafty.background("#ccc");
 					Crafty.audio.add({
-						"music": ["p3.mp3","p3.ogg"]
+						"music": ["assets/p3.mp3","assets/p3.ogg"]
 					});
 					Crafty.audio.play("music", -1);
 
-					Crafty.sprite(768, "background.png", {
+					Crafty.sprite(768, "assets/background.png", {
 						bg: [0,0]
 					});
 					var background = Crafty.e("2D, Canvas, bg").attr({
@@ -176,7 +176,7 @@
 
 										vnEngine.setName("Yosuke");
 										vnEngine.setText("Hey partner!");
-										vnEngine.setPortrait("yosuke.png");
+										vnEngine.setPortrait("assets/yosuke.png");
 										vnEngine.showDialog();
 										break;
 									case 1:
@@ -185,11 +185,11 @@
 											$.when(vnEngine.promptQuestion(["Yep","Nope","..."])).then( function(choice) {
 												switch (choice) {
 													case 1:
-														vnEngine.setPortrait("yosukehappy.png");
+														vnEngine.setPortrait("assets/yosukehappy.png");
 														vnEngine.setText("Cool! Let's go there sometime...");
 														break;
 													case 2:
-														vnEngine.setPortrait("yosukesad.png");
+														vnEngine.setPortrait("assets/yosukesad.png");
 														vnEngine.setText("Aww man.");
 														break;
 													case 3:
@@ -243,7 +243,7 @@
 							}
 							vnEngine.hideInteraction();
 							vnEngine.setName("Yukkiko");
-							vnEngine.setPortrait("yukkiko.png");
+							vnEngine.setPortrait("assets/yukkiko.png");
 							vnEngine.setText("DERP");
 							vnEngine.showDialog();
 
@@ -275,7 +275,7 @@
 
 										vnEngine.setName("Chie");
 										vnEngine.setText("Hey you!");
-										vnEngine.setPortrait("chie.png");
+										vnEngine.setPortrait("assets/chie.png");
 										vnEngine.showDialog();
 										break;
 									case 1:
@@ -283,7 +283,7 @@
 										vnEngine.animateMessage();
 										break;
 									case 2:
-										vnEngine.setPortrait("chiehungry.png");
+										vnEngine.setPortrait("assets/chiehungry.png");
 										vnEngine.setText("Do you have any steak?");
 										$.when(vnEngine.animateMessage()).then( function() {
 											$.when(vnEngine.promptQuestion(["I do!","No"])).then( function(choice) {
@@ -291,7 +291,7 @@
 
 												switch (choice1) {
 													case 1:
-														vnEngine.setPortrait("chieask.png");
+														vnEngine.setPortrait("assets/chieask.png");
 														vnEngine.setText("Ooh! Show me!");
 
 														vnEngine.animateMessage();
@@ -323,7 +323,7 @@
 										break;
 									case 4:
 
-										vnEngine.setPortrait("chieangry.png");
+										vnEngine.setPortrait("assets/chieangry.png");
 										vnEngine.setText("What. Hey! You lied!");
 
 										vnEngine.animateMessage();
@@ -355,19 +355,19 @@
 							enterCallback: enter
 						}
 					})()
-					Crafty.sprite(32, "soujisprite.png", {
+					Crafty.sprite(32, "assets/soujisprite.png", {
 						playerSprite: [1,0]
 					});
-					Crafty.sprite(32, "yukkikosprite.png", {
+					Crafty.sprite(32, "assets/yukkikosprite.png", {
 						yukkikoSprite: [1,0]
 					});
-					Crafty.sprite(32, "yosukesprite.png", {
+					Crafty.sprite(32, "assets/yosukesprite.png", {
 						yosukeSprite: [1,0]
 					});
-					Crafty.sprite(32, "chiesprite.png", {
+					Crafty.sprite(32, "assets/chiesprite.png", {
 						chieSprite: [1,0]
 					});
-					Crafty.sprite(32, "shadowsprite.png", {
+					Crafty.sprite(32, "assets/shadowsprite.png", {
 						shadowSprite: [0,0]
 					});
 
@@ -402,28 +402,28 @@
 						//move the  interface
 						vnEngine.updatePosition();
 					});
-					Crafty.sprite(32, "tree.png", {
+					Crafty.sprite(32, "assets/tree.png", {
 						tree: [0,0,2,3]
 					});
 
-					Crafty.sprite(32, "palmTree.png", {
+					Crafty.sprite(32, "assets/palmTree.png", {
 						palmtree: [0,0,2,3]
 					});
 
-					Crafty.sprite(32, "rock.png", {
+					Crafty.sprite(32, "assets/rock.png", {
 						rock: [0,0]
 					});
 
-					Crafty.sprite(32, "bush.png", {
+					Crafty.sprite(32, "assets/bush.png", {
 						bush: [0,0]
 					});
-					Crafty.sprite(32, "smalltree.png", {
+					Crafty.sprite(32, "assets/smalltree.png", {
 						smallTree: [0,0]
 					});
-					Crafty.sprite(32, "signSmall.png", {
+					Crafty.sprite(32, "assets/signSmall.png", {
 						smallSign: [0,0]
 					});
-					Crafty.sprite(32, "signBig.png", {
+					Crafty.sprite(32, "assets/signBig.png", {
 						bigSign: [0,0]
 					});
 
@@ -478,7 +478,7 @@
 							spacebarCallback: function() {
 								if (this.count === 0) {
 									vnEngine.hideInteraction();
-									vnEngine.setPortrait("empty.png");
+									vnEngine.setPortrait("assets/empty.png");
 									vnEngine.setText("> This sure is a nice sign!");
 									vnEngine.setName("");
 									vnEngine.showDialog();
@@ -578,7 +578,7 @@
 					vn = NovelInterface();
 					vn.show({
 						characterName: "???",
-						characterPortrait: "igor.png"
+						characterPortrait: "assets/igor.png"
 					},"Hello");
 				});
 				Crafty.scene("dungeon", function() {
@@ -778,15 +778,15 @@
 					var vnEngine = Crafty.e("NovelInterface");
 					
 					
-					Crafty.sprite(32, "rock.png", {
+					Crafty.sprite(32, "assets/rock.png", {
 						rock: [0,0]
 					});
 
-					Crafty.sprite(32, "bush.png", {
+					Crafty.sprite(32, "assets/bush.png", {
 						bush: [0,0]
 					});
 					
-					Crafty.sprite(32, "smalltree.png", {
+					Crafty.sprite(32, "assets/smalltree.png", {
 						smallTree: [0,0]
 					});
 					var makeRockAt = function(x,y) {

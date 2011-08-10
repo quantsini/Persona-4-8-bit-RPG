@@ -2,7 +2,7 @@ Crafty.c("Character", {
     init: function () {
         var pad, charShadow;
 		pad = 8;
-        Crafty.sprite(32, "charShadow.png", {
+        Crafty.sprite(32, "assets/charShadow.png", {
             charShadow: [0, 0]
         });
         charShadow = Crafty.e("2D, Canvas, charShadow").attr({
