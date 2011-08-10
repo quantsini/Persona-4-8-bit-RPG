@@ -4,3 +4,5 @@ Talking with people.
 Automatic dungeon creation.
 Turn based battle system that combines radiant historia features and final fantasy tactics placement dependancies
 8 bit hotness
+
+Uses https://github.com/louisstow/Crafty
