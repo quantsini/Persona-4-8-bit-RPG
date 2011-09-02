@@ -12,7 +12,7 @@
 			}
 		</style>
 		<script src="js/lib/jquery-1.6.2.js"></script>
-		<script src="js/lib/StackBoxBlur.js"></script>
+		<script src="js/lib/glfx.js"></script>
 		<script src="js/lib/crafty.js"></script>
 		<script src="js/aggroable.js"></script>
 		<script src="js/interactable.js"></script>
@@ -135,33 +135,7 @@
 						z:-1
 					});
 
-					Crafty.c("kekehenri", {
-						init: function () {
-							this._derp = 0;
-							return this;
-						},
-						activate: function() {
-							this.bind("EnterFrame", function() {
-								var canvas = document.getElementById( "herp" );
-								var context = canvas.getContext("2d");
-
-								this._derp++;
-								if (this._derp %10 == 0) {
-									console.log("DERP");
-									stackBoxBlurCanvasRGB( Crafty.canvas.context, 0,0, 640, 440, this._derp, 1, context);
-								}
-
-								if (this._derp == 30) {
-									context.width = context.width;
-									context.clearRect ( 0 , 0 , 640 , 440 );
-									this._derp = 0;
-									this.unbind("EnterFrame");
-								}
-							});
-						}
-					});
-
-					keke = Crafty.e("kekehenri");
+				
 					/******************************************************************
 					 *
 					 *lol abstract the shit out of this. maybe write a higher level language like ren'py that handles the visual novel portions?
@@ -202,7 +176,7 @@
 									case 2:
 										vnEngine.setText("> Yosuke pats your back hard.");
 										$.when(vnEngine.animateMessage()).then( function() {
-											keke.activate();
+											//derp
 										});
 										break;
 									default:
@@ -474,6 +448,8 @@
 							},
 							leaveCallback: function () {
 								vnEngine.hideInteraction();
+								vnEngine.hideDialog();
+								this.count = 0;
 							},
 							spacebarCallback: function() {
 								if (this.count === 0) {
@@ -848,12 +824,58 @@
 				// start off with the preloading scene
 				Crafty.scene("preloading");
 
+					
+					canvas = fx.canvas();
+					$("#herp").append(canvas);
+					
+					// shim layer with setTimeout fallback
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       || 
+              window.webkitRequestAnimationFrame || 
+              window.mozRequestAnimationFrame    || 
+              window.oRequestAnimationFrame      || 
+              window.msRequestAnimationFrame     || 
+              function(/* function */ callback, /* DOMElement */ element){
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
+ 
+ 
+    // usage: 
+    // instead of setInterval(render, 16) ....
+ doEffects = true
+ $("#derp").click(function() {
+	doEffects = !doEffects;
+	
+ });
+	x = 0;
+			rendar = function() {
+				var d = (0.5 + 0.5*Math.cos(x/10))*1
+				var crstage = Crafty.canvas.context.getImageData(0,0,640,440);
+				var texture = canvas.texture(crstage);
+				canvas.draw(texture).sepia(0.75).bulgePinch(320,220,400,0.10).brightnessContrast(-0.1,0.2).vignette(0,1).noise(0.10).update();
+				x = x + 1;
+			}
+			animloop = function(){
+				if (doEffects) {
+			  rendar();
+			  }
+			  else
+			  {
+				var crstage = Crafty.canvas.context.getImageData(0,0,640,440);
+				var texture = canvas.texture(crstage);
+				canvas.draw(texture).update();
+			  }
+			  requestAnimFrame(animloop);
+			}
+			
+			animloop();
 			});
 		</script>
 	</head>
 	<body>
 		<div id="derp">
-			wasd keys, space bar. derp
+			click here to disable/enalbe effects. wasd keys, space bar. derp
 		</div>
 		<div class="small">
 			By
@@ -861,7 +883,6 @@
 			<a href="http://www.atlus.com/">Atlus</a>. It's slow because I haven't optimized anything for speed yet. Also, no shadows lolol. NOW IN BLURRY VISION.
 		</div>
 		<br>
-		<canvas id="herp" width="640" height="440" style="position: absolute; z-index: 10">
-		</canvas>
+		<div id="herp" width="640" height="440" style="position: absolute; z-index: 10; opacity: 0.90"></div>
 	</body>
 </html>

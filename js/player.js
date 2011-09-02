@@ -27,7 +27,7 @@ Crafty.c("Player", {
 			.animate("walk_right", 0, 2, 3)
 			.animate("walk_up", 0, 3, 3)
 			.animate("walk_down", 0, 0, 3)
-			.setSpeed(2)
+			.setSpeed(2.5)
 			.bind("NewDirection", function (direction) {
 				if (direction.x < 0) {
 					if (!this.isPlaying("walk_left")) {

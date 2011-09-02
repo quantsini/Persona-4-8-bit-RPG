@@ -111,16 +111,18 @@ Crafty.c("NovelInterface", {
 		var dfd = $.Deferred();
 		
 		if (this._animating) {
-		console.log("hehe");
 			self._darkBG.unbind("EnterFrame");
 			self._orangeBG.unbind("EnterFrame");
 			self._characterBG.unbind("EnterFrame");
 			self._dialogName.text(" ");
+			this.setText(" ");
+			this.setName(" ");
 		}
 		
 		if (this._writing) {
 			this._writing = false;
 		}
+		
 		if (this._shown) {
 			if (!this._animating) {
 				self._darkBG.attr( {
